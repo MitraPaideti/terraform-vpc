@@ -10,7 +10,7 @@ variable "subnet_cidr_blocks" {
 }
 
 # Create a VPC
-resource "aws_vpc" "my_vpc" {
+resource "create_vpc" "my_vpc" {
   cidr_block = var.vpc_cidr_block
   tags = {
     Name = "my-vpc"
