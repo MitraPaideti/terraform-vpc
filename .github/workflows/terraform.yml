@@ -19,9 +19,9 @@ terraform:
         terraform_version: 1.3.7
     
     - name: Deploy to AWS
-          run: aws configure set aws_access_key_id $AWS_ACCESS_KEY_IDs
-                aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-                aws s3 cp my-app s3://ec2-pem-mithra/
+          run: aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+               aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+               aws s3 cp my-app s3://ec2-pem-mithra/
 
 
     - name: Initialize Terraform
