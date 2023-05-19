@@ -1,7 +1,7 @@
-variable "aws_region" {
-  description = "AWS region"
-  default     = "us-west-2"
-}
+#variable "aws_region" {
+  #description = "AWS region"
+  #default     = "us-west-2"
+#}
 
 variable "vpc_cidr_block" {
   description = "VPC CIDR block"
