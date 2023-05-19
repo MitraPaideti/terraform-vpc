@@ -8,15 +8,15 @@ push:
 jobs:
 terraform:
   runs-on: ubuntu-latest
+
 steps:
  - name: Checkout code
    uses: actions/checkout@v2
 
 - name: Set up Terraform
   uses: hashicorp/setup-terraform@v1
-  with:
-
- terraform_version: 1.3.7
+  with: 
+       terraform_version: 1.3.7
 
  - name: Configure AWS credentials
    uses: aws-actions/configure-aws-credentials@v1
