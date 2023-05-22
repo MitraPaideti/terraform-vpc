@@ -6,11 +6,7 @@ phases:
       nodejs: 16
     commands:
       - npm install -g npm@latest
-
-    runtime-versions:
-    terraform: 1.0.0
-    commands:
-     # Install Terraform
+      # Install Terraform
       - curl -O https://releases.hashicorp.com/terraform/0.15.0/terraform_0.15.0_linux_amd64.zip
       - unzip terraform_0.15.0_linux_amd64.zip
       - sudo mv terraform /usr/local/bin/
