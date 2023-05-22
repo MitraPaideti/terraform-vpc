@@ -1,7 +1,5 @@
 name: Terraform Automation
 
-
-
 on:
   push:
     terrbranches:
