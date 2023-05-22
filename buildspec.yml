@@ -3,22 +3,25 @@ version: 0.2
 phases:
   install:
     runtime-versions:
+      nodejs: 16
       terraform: 1.0.0
     commands:
-      # Install Terraform
+      - npm install -g npm@latest
+     # Install Terraform
       - curl -O https://releases.hashicorp.com/terraform/0.15.0/terraform_0.15.0_linux_amd64.zip
       - unzip terraform_0.15.0_linux_amd64.zip
       - sudo mv terraform /usr/local/bin/
       - terraform --version
   
-  pre_build:
+pre_build:
     commands:
       - echo Logging in to AWS ECR
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   
-  build:
+build:
     commands:
-      # Initialize Terraform
+      - npm run build
+       # Initialize Terraform
       - echo Building VPC using Terraform
       - cd terraform/vpc  # Change to your VPC directory
       - terraform init
