@@ -1,7 +1,7 @@
 terraform {
     backend "s3" {
     region = "us-west-2"
-    bucket = "ec2-pem-mithra"
+    bucket = "terraform-vpc-mitra"
     key = "terraform-vpc-mitra.tfstate"
     }
     }
