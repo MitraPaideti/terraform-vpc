@@ -7,6 +7,7 @@ phases:
     commands:
   
       - npm install -g npm@latest
+      - sudo apt-get install terraform
       - terraform -install-autocomplete
 
   build:
