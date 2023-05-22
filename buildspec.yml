@@ -11,10 +11,7 @@ phases:
       - unzip terraform_install.zip -d /usr/bin/
       - chmod +x /usr/bin/terraform
   
-  finally:
-      - terraform --version
-
-  build:
+    build:
     commands:
       - npm run build
       - terraform init
