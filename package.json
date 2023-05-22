@@ -1,0 +1,11 @@
+{
+    "name": "my-application",
+    "version": "1.0.0",
+    "scripts": {
+      "build": "echo 'Build command executed'"
+    },
+    "dependencies": {
+      "example-package": "^1.0.0"
+    }
+  }
+  
