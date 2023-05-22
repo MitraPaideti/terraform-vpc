@@ -17,13 +17,19 @@ phases:
       - npm run build
        # Initialize Terraform
       - cd path/to/terraform/directory
-      - terraform init
-      #Planning
-      - terraform plan
-      # Apply Terraform configuration
-      - terraform apply -auto-approve
+      - cd "$CODEBUILD_SRC_DIR"
+      - terraform init -input=false --backend-config=./env_vars/${TF_ENV}.conf
+      - terraform ${TF_ACTION} -input=false -var-file=./env_vars/${TF_ENV}.tfvars -auto-approve
+
+post_build:
+    commands:
+      - echo "Terraform completed on `date`"
       
 artifacts:
   files:
     - '**/*'
   name: MyApplication
+
+      - cd "$CODEBUILD_SRC_DIR"
+      - terraform init -input=false --backend-config=./env_vars/${TF_ENV}.conf
+      - terraform ${TF_ACTION} -input=false -var-file=./env_vars/${TF_ENV}.tfvars -auto-approve
