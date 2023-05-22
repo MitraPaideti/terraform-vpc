@@ -7,8 +7,12 @@ phases:
     commands:
   
       - npm install -g npm@latest
-      - sudo apt-get install terraform
-      - terraform -install-autocomplete
+      - curl -s -qL -o terraform_install.zip https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
+      - unzip terraform_install.zip -d /usr/bin/
+      - chmod +x /usr/bin/terraform
+  
+  finally:
+      - terraform --version
 
   build:
     commands:
