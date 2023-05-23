@@ -5,22 +5,22 @@
 
 variable "vpc_cidr_block" {
   description = "VPC CIDR block"
-  default     = "10.0.0.0/16"
+  default     = ""
 }
 
 variable "vpc_name" {
   description = "VPC name"
-  default     = "My-VPC-Mitra"
+  default     = ""
 }
 
 variable "subnet_cidr_block" {
   description = "Subnet CIDR block"
-  default     = "10.0.0.0/24"
+  default     = ""
 }
 
 variable "availability_zone" {
   description = "Availability Zone"
-  default     = "us-west-2a"
+  default     = ""
 }
 
 variable "map_public_ip" {
