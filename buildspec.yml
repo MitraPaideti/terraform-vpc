@@ -18,8 +18,10 @@ phases:
        # Initialize Terraform
       - echo Building VPC using Terraform 
       - terraform init
-      - terraform plan -out=tfplan -input=false
-      - terraform apply -input=false tfplan
+      - terraform plan
+      - terraform apply -auto-approve
+      #- terraform plan -out=tfplan -input=false
+      #- terraform apply -input=false tfplan
 
   post_build:
     commands:
