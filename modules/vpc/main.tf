@@ -4,7 +4,7 @@
 #}
 
 # Create VPC
-/*resource "aws_vpc" "my_vpc" {
+resource "aws_vpc" "my_vpc" {
   cidr_block = var.vpc_cidr_block
   tags = {
     Name = var.vpc_name
@@ -70,21 +70,4 @@ resource "aws_security_group" "my_security_group" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-}*/
-
-
- module "vpc" {
-  source = "./modules/vpc"
-
-   name = "main"
-   cidr = "10.0.0.0/16"
-
-  azs = [ "us-west-2a","us-west-2b" ]
- private_subnets = ["10.0.1.0/24"]
- public_subnets  = ["10.0.4.0/24","10.0.3.0/24"]
-    
-     enable_nat_gateway = true
-  tags = {         "Environment"="staging"
-  }
-  
- }
+}
