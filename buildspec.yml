@@ -16,8 +16,7 @@ phases:
     commands:
       - npm run build
        # Initialize Terraform
-      - echo Building VPC using Terraform
-      - cd terraform/vpc  
+      - echo Building VPC using Terraform 
       - terraform init
       - terraform plan -out=tfplan -input=false
       - terraform apply -input=false tfplan
