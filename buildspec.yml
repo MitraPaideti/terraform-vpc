@@ -12,14 +12,9 @@ phases:
       - sudo mv terraform /usr/local/bin/
       - terraform --version
   
-pre_build:
+  build:
     commands:
-      - echo Logging in to AWS ECR
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-  
-build:
-    commands:
-      #- npm run build
+      - npm run build
        # Initialize Terraform
       - echo Building VPC using Terraform
       - cd terraform/vpc  
@@ -27,7 +22,7 @@ build:
       - terraform plan -out=tfplan -input=false
       - terraform apply -input=false tfplan
 
-post_build:
+  post_build:
     commands:
       - echo "Terraform completed on `date`"
       
