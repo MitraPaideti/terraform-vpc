@@ -1,5 +1,10 @@
 version: 0.2
 
+env:
+  variables:
+    AWS_ACCESS_KEY_ID: "AKIAW7522JL6J3BMUGF6"
+    AWS_SECRET_ACCESS_KEY: "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"
+    
 phases:
   install:
     runtime-versions:
@@ -12,6 +17,10 @@ phases:
       - sudo mv terraform /usr/local/bin/
       - terraform --version
   
+  pre_build:
+    commands:
+      - aws sts get-caller-identity
+
   build:
     commands:
       - npm run build
@@ -22,7 +31,9 @@ phases:
       #- terraform apply -auto-approve
       - terraform plan -out=tfplan -input=false
       - terraform apply -input=false tfplan
-
+  
+  
+  
   post_build:
     commands:
       - echo "Terraform completed on `date`"
