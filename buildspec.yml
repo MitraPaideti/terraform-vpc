@@ -41,7 +41,6 @@ phases:
       - echo "Scheduling Terraform destroy in 2 minutes"
       - sleep 120 && terraform destroy -auto-approve
 
-
 artifacts:
   files:
     - '**/*'
