@@ -2,7 +2,7 @@ name: Terraform Automation
 
 on:
   push:
-    terrbranches:
+    branches:
       - main
   
   pull_request:
