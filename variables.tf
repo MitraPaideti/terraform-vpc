@@ -1,8 +1,3 @@
-#variable "aws_region" {
-  #description = "AWS region"
-  #default     = "us-west-2"
-#}
-
 variable "vpc_cidr_block" {
   description = "VPC CIDR block"
   default     = ""
@@ -18,7 +13,7 @@ variable "subnet_cidr_block" {
   default     = ""
 }
 
-variable "availability_zone" {
+variable "region" {
   description = "Availability Zone"
   default     = ""
 }

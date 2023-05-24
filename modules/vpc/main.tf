@@ -1,20 +1,41 @@
-# Configure the AWS provider
-#provider "aws" {
- # region = var.aws_region
-#}
+variable "region" {
+  description = "AWS region"
+}
 
-# Create VPC
+variable "cidr_block" {
+  description = "VPC CIDR block"
+}
+
+output "vpc_id" {
+  value = aws_vpc.my_vpc.id
+}
+
+output "subnet_id" {
+  value = aws_subnet.my_subnet.id
+}
+
+output "security_group_name" {
+  value = aws_security_group.my_security_group.name
+}
+
+output "region" {
+  value = var.region
+}
+
+output "cidr_block" {
+  value = var.cidr_block
+}
+
 resource "aws_vpc" "my_vpc" {
-  cidr_block = var.vpc_cidr_block
+  cidr_block = var.cidr_block
   tags = {
     Name = var.vpc_name
   }
 }
 
-# Create Subnets
 resource "aws_subnet" "my_subnet" {
   vpc_id                  = aws_vpc.my_vpc.id
-  cidr_block              = var.subnet_cidr_block
+  cidr_block              = var.cidr_block
   availability_zone       = var.availability_zone
   map_public_ip_on_launch = var.map_public_ip
   tags = {
@@ -22,36 +43,6 @@ resource "aws_subnet" "my_subnet" {
   }
 }
 
-# Create Route Table
-resource "aws_route_table" "my_route_table" {
-  vpc_id = aws_vpc.my_vpc.id
-  tags = {
-    Name = var.route_table_name
-  }
-}
-
-# Create Route
-resource "aws_route" "my_route" {
-  route_table_id         = aws_route_table.my_route_table.id
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.my_internet_gateway.id
-}
-
-# Create Internet Gateway
-resource "aws_internet_gateway" "my_internet_gateway" {
-  vpc_id = aws_vpc.my_vpc.id
-  tags = {
-    Name = var.internet_gateway_name
-  }
-}
-
-# Attach Subnet to Route Table
-resource "aws_route_table_association" "my_route_table_association" {
-  subnet_id      = aws_subnet.my_subnet.id
-  route_table_id = aws_route_table.my_route_table.id
-}
-
-# Create Security Group
 resource "aws_security_group" "my_security_group" {
   name        = var.security_group_name
   description = var.security_group_description

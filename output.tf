@@ -1,15 +1,19 @@
 output "vpc_id" {
-  value = aws_vpc.vpc_id
+  value = module.my_module.vpc_id
 }
 
 output "subnet_id" {
-  value = aws_subnet.subnet_id
+  value = module.my_module.subnet_id
 }
 
-output "security_group_id" {
-  value = aws_security_group.security_group_id
-  }
+output "security_group_name" {
+  value = module.my_module.security_group_name
+}
 
-  output "subnet_cidr_block" {
-  value = aws_subnet_cidr_block.subnet_cidr_block
-  }
+output "region" {
+  value = module.my_module.region
+}
+
+output "cidr_block" {
+  value = module.my_module.cidr_block
+}
