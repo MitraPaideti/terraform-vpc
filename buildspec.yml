@@ -29,7 +29,7 @@ phases:
       - terraform init
       #- terraform plan
       #- terraform apply -auto-approve
-      - terraform plan
+      - terraform plan -out=tfplan -input=false
       - terraform apply -input=false tfplan
    
   post_build:
