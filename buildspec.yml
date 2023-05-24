@@ -35,15 +35,7 @@ phases:
   post_build:
     commands:
       - echo "Terraform completed on `date`"
-  
-  # Additional phase for resource destruction
-      - echo Destroying resources using Terraform
-      - terraform destroy -auto-approve
-
-      # Print cleanup complete message
-      - echo "Cleanup completed on `date`"
-
-      
+         
 artifacts:
   files:
     - '**/*'
