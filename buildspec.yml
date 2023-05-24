@@ -37,9 +37,6 @@ phases:
       - echo "Terraform completed on `date`"
   
   # Additional phase for resource destruction
-  cleanup:
-    commands:
-      # Destroy Terraform resources
       - echo Destroying resources using Terraform
       - terraform destroy -auto-approve
 
