@@ -1,5 +1,5 @@
 provider "aws" {
-  region = ""
+  region = var.azs
 }
 
 terraform {
