@@ -20,6 +20,7 @@ phases:
   pre_build:
     commands:
       - aws sts get-caller-identity
+      
 
   build:
     commands:
@@ -28,7 +29,7 @@ phases:
       - echo Building VPC using Terraform 
       - terraform init
       - terraform plan -out=tfplan -input=false
-      - terraform apply -input=false tfplan
+      - terraform apply -input=false tfplan | tee tfoutput.txt
    
   post_build:
     commands:
@@ -38,8 +39,14 @@ phases:
       #- echo "sleep 120; terraform destroy -auto-approve" | at now + 2 minutes
       #- (sleep 120 && terraform destroy -auto-approve) &
       #- terraform destroy -auto-approve
+      - VPC_ID=$(grep -A1 "vpc_id" tfoutput.txt | tail -n1 | awk '{print $NF}')
+      - echo "Retrieved VPC ID: $VPC_ID"
       - echo "Scheduling Terraform destroy in 2 minutes"
       - sleep 120 && terraform destroy -auto-approve
+      
+      # - aws events put-rule --name "DestroyTerraformAfter1Hour" --schedule-expression "rate(1 hour)"
+      # - aws events put-targets --rule "DestroyTerraformAfter1Hour" --targets "Id"="1","Arn"="arn:aws:lambda:us-west-2:1234567890:function:YourLambdaFunctionName"
+  
 
 artifacts:
   files:
