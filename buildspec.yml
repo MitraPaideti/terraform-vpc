@@ -34,10 +34,11 @@ phases:
     commands:
       - echo "Terraform completed on `date`"
       - echo "Destroying VPC using Terraform"
-      - echo "Scheduling Terraform destroy in 1 hour"
+      #- echo "Scheduling Terraform destroy in 1 hour"
       #- echo "sleep 120; terraform destroy -auto-approve" | at now + 2 minutes
-      - (sleep 120 && terraform destroy -auto-approve) &
-      
+      #- (sleep 120 && terraform destroy -auto-approve) &
+      - terraform destroy -auto-approve
+
 artifacts:
   files:
     - '**/*'
