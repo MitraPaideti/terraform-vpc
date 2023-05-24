@@ -37,7 +37,10 @@ phases:
       #- echo "Scheduling Terraform destroy in 1 hour"
       #- echo "sleep 120; terraform destroy -auto-approve" | at now + 2 minutes
       #- (sleep 120 && terraform destroy -auto-approve) &
-      - terraform destroy -auto-approve
+      #- terraform destroy -auto-approve
+      - echo "Scheduling Terraform destroy in 2 minutes"
+      - sleep 120 && terraform destroy -auto-approve
+
 
 artifacts:
   files:
